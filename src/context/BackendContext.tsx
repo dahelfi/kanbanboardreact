@@ -16,10 +16,6 @@ export const todoContext = React.createContext<BackendProps|undefined>(undefined
 export const BackendContextProvider = (props: React.PropsWithChildren)=>{
     const[users, setUsers] = useState<User[]>([]);
 
-    useEffect(()=>{
-
-    })
-
     const getUsersFromLocalStorage = ()=>{ 
         if(localStorage.getItem("users") !== null){
         setUsers(JSON.parse(localStorage.getItem("users") as string));
@@ -28,8 +24,14 @@ export const BackendContextProvider = (props: React.PropsWithChildren)=>{
     }
 
     const addUser = (user: User)=>{
+        console.log("hier dein user: ", user);
+        
         setUsers([...users, user]);
+        console.log("hier sind die users: ", users);
+        
         setToLocalStorage("users", users);
+        console.log("add user wird ausgeführt");
+        
     }
 
 
@@ -44,6 +46,8 @@ export const BackendContextProvider = (props: React.PropsWithChildren)=>{
         let array: any[] = [];
         localStorage.setItem(key, JSON.stringify(array));
     }
+
+
 
     return (
         <todoContext.Provider value={{
