@@ -6,9 +6,13 @@ import "../styles/login.scss"
 
 interface Props{
     isNotSignedUp: () => void;
+    logIn: () => any;
 }
 
 export const SignInElement = (props: Props) => {
+  const [userEmail, setUserEmail] = useState<string>("");
+  const [userName, setUserName] = useState<string>("");
+
   return (
     <Card id="card" style={{display: "flex", flexDirection: "column"}}>
     <h1>Sign In</h1>

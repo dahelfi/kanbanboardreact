@@ -1,24 +1,51 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import {Card} from "primereact/card"
 import {Button} from "primereact/button"
 import {InputText} from "primereact/inputtext"
 import "../styles/login.scss"
+import { todoContext } from '../context/BackendContext'
+import {generateHash} from '../services/hash';
+import {User} from "../types/user"
+import {useNavigate} from "react-router-dom"
 
 interface Props{
     isSignedUp: () => void;
+    logIn: () => any;
 }
 
 export const SignUpElement = (props: Props) => {
+  const backend = useContext(todoContext);
+  let navigate = useNavigate();
+  const [userEmail, setUserEmail] = useState<string>("");
+  const [userName, setUserName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+
+  
+  const createUser = () =>{
+    let user: User={
+      id: generateHash(10),
+      username: userName,
+      email: userEmail,
+      password: password
+    }
+  backend?.addUser(user);
+  props.logIn();
+  navigate("/board")
+  }
+
+ 
+
   return (
     <Card id="card" style={{display: "flex", flexDirection: "column"}}>
     <h1>Sign up</h1>
-    <label htmlFor="username" >Username</label>
-    <InputText className='input-field' type="text"  />
-    <label htmlFor="email" >Email</label>
-    <InputText className='input-field' type="password" />
-    <label htmlFor="password" >Password</label>
-    <InputText className='input-field' type="password" />
-    <Button label="Sign up" icon="pi pi-user"  />
+    <label  >Username</label>
+    <InputText onChange={(e:any)=>setUserName(e.target.value)} className='input-field' type="text"  />
+    <label  >Email</label>
+    <InputText onChange={(e:any)=>setUserEmail(e.target.value)} className='input-field' type="text" />
+    <label  >Password</label>
+    <InputText onChange={(e:any)=>setPassword(e.target.value)} className='input-field' type="password" />
+    <Button onClick={()=>createUser()} label="Sign up" icon="pi pi-user"  />
     <div onClick={props.isSignedUp} style={{display: "flex", justifyContent: "center", width: "100%"}}>
     <div className="add-account-button">Already signed Up</div>
     </div>

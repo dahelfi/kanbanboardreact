@@ -8,8 +8,11 @@ import { Footer } from './Footer'
 import { SignInElement } from './SignInElement'
 import { SignUpElement } from './SignUpElement'
 
+interface Props{
+  logInOrLogOut: ()=>void;
+}
 
-export const Login = () => {
+export const Login = (props: Props) => {
     const [isSignedUp, setIsSignedUp] = useState <boolean> (true);
 
   return (
@@ -17,8 +20,8 @@ export const Login = () => {
         <img src={todo}/>
         {
             isSignedUp ? 
-            <SignInElement isNotSignedUp={()=>setIsSignedUp(false)}/>:
-            <SignUpElement isSignedUp={()=>setIsSignedUp(true)}/>
+            <SignInElement logIn={props.logInOrLogOut} isNotSignedUp={()=>setIsSignedUp(false)}/>:
+            <SignUpElement logIn={props.logInOrLogOut} isSignedUp={()=>setIsSignedUp(true)}/>
         }
 
     <Footer/>
