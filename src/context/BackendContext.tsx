@@ -23,14 +23,14 @@ export const BackendContextProvider = (props: React.PropsWithChildren)=>{
         }
     }
 
+    useEffect(()=>{
+   
+    }
+    ,[users]);
+
     const addUser = (user: User)=>{
-        console.log("hier dein user: ", user);
         
         setUsers([...users, user]);
-        console.log("hier sind die users: ", users);
-        
-        setToLocalStorage("users", users);
-        console.log("add user wird ausgeführt");
         
     }
 

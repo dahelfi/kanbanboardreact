@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import {Card} from "primereact/card"
 import {Button} from "primereact/button"
 import {InputText} from "primereact/inputtext"
@@ -16,6 +16,7 @@ interface Props{
 export const SignUpElement = (props: Props) => {
   const backend = useContext(todoContext);
   let navigate = useNavigate();
+  const[users, setUsers] = useState<User[]>([]);
   const [userEmail, setUserEmail] = useState<string>("");
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -29,9 +30,12 @@ export const SignUpElement = (props: Props) => {
       email: userEmail,
       password: password
     }
-  backend?.addUser(user);
-  props.logIn();
-  navigate("/board")
+    backend?.addUser(user);
+    props.logIn();
+    navigate("/board")
+
+    backend?.addUser(user);
+   
   }
 
  
@@ -45,7 +49,7 @@ export const SignUpElement = (props: Props) => {
     <InputText onChange={(e:any)=>setUserEmail(e.target.value)} className='input-field' type="text" />
     <label  >Password</label>
     <InputText onChange={(e:any)=>setPassword(e.target.value)} className='input-field' type="password" />
-    <Button onClick={()=>createUser()} label="Sign up" icon="pi pi-user"  />
+    <Button onClick={createUser} label="Sign up" icon="pi pi-user"  />
     <div onClick={props.isSignedUp} style={{display: "flex", justifyContent: "center", width: "100%"}}>
     <div className="add-account-button">Already signed Up</div>
     </div>
