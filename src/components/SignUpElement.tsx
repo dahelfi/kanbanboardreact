@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import {Card} from "primereact/card"
 import {Button} from "primereact/button"
 import {InputText} from "primereact/inputtext"
@@ -16,6 +16,7 @@ interface Props{
 export const SignUpElement = (props: Props) => {
   const backend = useContext(todoContext);
   let navigate = useNavigate();
+  const[users, setUsers] = useState<User[]>([]);
   const [userEmail, setUserEmail] = useState<string>("");
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -29,9 +30,12 @@ export const SignUpElement = (props: Props) => {
       email: userEmail,
       password: password
     }
-  backend?.addUser(user);
-  props.logIn();
-  navigate("/board")
+    backend?.addUser(user);
+    props.logIn();
+    navigate("/board")
+
+    backend?.addUser(user);
+   
   }
 
  

@@ -28,6 +28,11 @@ export const BackendContextProvider = (props: React.PropsWithChildren)=>{
         }
     }
 
+    useEffect(()=>{
+   
+    }
+    ,[users]);
+
     const addUser = (user: User)=>{
         setUsers([...users, user]);
     }
