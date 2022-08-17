@@ -40,11 +40,11 @@ export const SignUpElement = (props: Props) => {
     <Card id="card" style={{display: "flex", flexDirection: "column"}}>
     <h1>Sign up</h1>
     <label  >Username</label>
-    <InputText onChange={(e:any)=>setUserName(e.target.value)} className='input-field' type="text"  />
+    <InputText onChange={(e:any)=>{setUserName(e.target.value); e.stopPropagation()}} className='input-field' type="text"  />
     <label  >Email</label>
-    <InputText onChange={(e:any)=>setUserEmail(e.target.value)} className='input-field' type="text" />
+    <InputText onChange={(e:any)=>{setUserEmail(e.target.value); e.stopPropagation()}} className='input-field' type="text" />
     <label  >Password</label>
-    <InputText onChange={(e:any)=>setPassword(e.target.value)} className='input-field' type="password" />
+    <InputText onChange={(e:any)=>{setPassword(e.target.value); e.stopPropagation()}} className='input-field' type="password" />
     <Button onClick={()=>createUser()} label="Sign up" icon="pi pi-user"  />
     <div onClick={props.isSignedUp} style={{display: "flex", justifyContent: "center", width: "100%"}}>
     <div className="add-account-button">Already signed Up</div>

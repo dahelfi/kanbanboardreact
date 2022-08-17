@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from 'react'
+import { Task } from '../types/task';
 import {User} from "../types/user"
 
 export interface BackendProps{
     getUsersFromLocalStorage: ()=> any;
     setToLocalStorage: (key: string, array: any[]) => void;
     users: User[];
+    tasks: Task[];
     addUser: (user: User) => void;
+    addTask: (task: Task) => void;
 }
 
 
 export const todoContext = React.createContext<BackendProps|undefined>(undefined);
    
-
+const userDataFromLocalStorage = JSON.parse(localStorage.getItem("users")||"[]") as User[];
+const taskDataFromLocalStorage = JSON.parse(localStorage.getItem("tasks")||"[]") as Task[];
 
 export const BackendContextProvider = (props: React.PropsWithChildren)=>{
-    const[users, setUsers] = useState<User[]>([]);
+    const[users, setUsers] = useState<User[]>(userDataFromLocalStorage);
+    const[tasks, setTasks] = useState<Task[]>(taskDataFromLocalStorage);
 
     const getUsersFromLocalStorage = ()=>{ 
         if(localStorage.getItem("users") !== null){
@@ -24,15 +29,24 @@ export const BackendContextProvider = (props: React.PropsWithChildren)=>{
     }
 
     const addUser = (user: User)=>{
-        console.log("hier dein user: ", user);
-        
         setUsers([...users, user]);
-        console.log("hier sind die users: ", users);
-        
-        setToLocalStorage("users", users);
-        console.log("add user wird ausgeführt");
-        
     }
+
+    const addTask = (task: Task)=>{
+        console.log("task wird hinzugefügt");
+        
+        setTasks([...tasks, task]);
+    }
+
+    useEffect(()=>{
+  
+        localStorage.setItem("users", JSON.stringify(users));
+    },[users])
+
+    useEffect(()=>{
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        console.log("daten wurden gesendet")
+    },[tasks])
 
 
     const setToLocalStorage = (key: string, array: any[] )=>{
@@ -54,7 +68,9 @@ export const BackendContextProvider = (props: React.PropsWithChildren)=>{
             getUsersFromLocalStorage: getUsersFromLocalStorage,
             setToLocalStorage: setToLocalStorage,
             addUser: addUser,
-            users: users
+            addTask: addTask,
+            users: users,
+            tasks: tasks
         }}>
             {props.children}
         </todoContext.Provider>

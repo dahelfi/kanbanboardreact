@@ -1,0 +1,28 @@
+@import "./constants.scss";
+header{
+    img{
+        margin: 30px;
+    }
+
+  height: 95vh; 
+  background-color: $PRIMARY; 
+  width: 200px;
+  border-radius: 0 5px 5px 0;
+  position: absolute;
+  left: 0px;
+  color: white;
+  font-size: xx-large;
+
+
+  .button-logout .pi{
+    font-size: xx-large;
+  }
+
+  .button-logout.p-button{
+    &:hover{
+        background-color: $PRIMARY;
+        border: 2px solid $PRIMARY;
+    }
+  }
+
+}

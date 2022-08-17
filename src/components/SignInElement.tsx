@@ -18,9 +18,7 @@ export const SignInElement = (props: Props) => {
   let navigate = useNavigate();
 
   const logIn = () => {
-    console.log("ich werde ausgeführt");
-    
-    backend?.getUsersFromLocalStorage();
+
     if(checkAllInputFields() && backend){ 
         if(checkCredentials(backend?.users)){
           props.logIn();
@@ -46,11 +44,9 @@ export const SignInElement = (props: Props) => {
      * @returns 
      */
     const checkCredentials = (array:any[]) =>{
-      for (let i = 0; i < array.length; i++) {
-      
+      for (let i = 0; i < array.length; i++) {      
         if(array[i].password === password &&
-          array[i].userName === userName){
-    
+          array[i].username === userName){
             return true;
         }
       }

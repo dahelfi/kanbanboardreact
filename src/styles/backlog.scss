@@ -1,0 +1,61 @@
+@import "./constants.scss";
+
+.backlogListElement-card-element{
+    height: 40px;
+    display: flex;
+    margin-bottom: 10px;
+    cursor: pointer; 
+    box-shadow: 3px 1px 10px rgba(0,0,0,0.1), 0 2px 2px rgba(0,0,0,0.1);
+    border-radius: 5px;
+
+    &:hover{
+        border-bottom: 2px solid $SECONDARY;
+    }
+}
+
+.card-element.p-card.p-component{
+    width: 100%;
+    height: 95%;
+    display: flex;
+    margin: 40px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    justify-content: flex-start;
+
+  
+
+    .headline.p-card-title{
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        color: $MAINBLUE;
+    }
+
+    .backlog-headline{
+        display: flex;
+   
+        .title{
+            display: flex;
+            justify-content: flex-start;
+            width: 300px;
+        }
+
+        .urgency{
+            display: flex;
+            justify-content: flex-start;
+            width: 300px;
+        }
+
+        .date{
+            display: flex;
+            justify-content: flex-start;
+            width: 300px;
+        }
+      
+    }
+
+    .backlog-content{
+        width: 100%;
+        height: 100%;
+    }
+ 
+}
