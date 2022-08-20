@@ -6,4 +6,13 @@ export interface Task{
     description: string;
     date: Date | Date[] ;
     urgency: IMPORTANCE;
+    showBacklog: boolean;
+    column: COLUMN
+ }
+
+ export enum COLUMN {
+    TODO,
+    PROGRESS,
+    TESTING,
+    DONE
  }

@@ -1,0 +1,14 @@
+@import "./constants.scss";
+.button-icon-edit{
+    background-color: $PRIMARY;
+}
+
+.button-icon-delete{
+    background-color: $SECONDARY;
+    border: 1px solid $SECONDARY;
+
+    &:hover{
+        background-color: #e24c7e !important;
+        border: 1px solid #e24c7e!important;
+     }
+}

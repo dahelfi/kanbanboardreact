@@ -7,6 +7,8 @@ import { BacklogListElement } from './BacklogListElement'
 export const BacklogElement = () => {
   const backend = useContext(todoContext);
 
+
+
   return (
     <Card className='card-element'>
        <div className='p-card-title headline'>
@@ -27,9 +29,14 @@ export const BacklogElement = () => {
 
           {
             backend?.tasks.map((element)=>{
-              return(
-                <BacklogListElement task={element}/>
-              )
+              if(element.showBacklog){
+                return(
+                  <BacklogListElement  task={element}/>
+                )
+              }else{
+                return null;
+              }
+              
             })
           }
 

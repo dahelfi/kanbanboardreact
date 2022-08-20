@@ -6,7 +6,7 @@ import { Button } from 'primereact/button'
 import { Dropdown } from 'primereact/dropdown';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Calendar } from 'primereact/calendar';
-import { Task } from '../types/task'
+import { COLUMN, Task } from '../types/task'
 import { generateHash } from '../services/hash'
 import { todoContext } from '../context/BackendContext'
 
@@ -38,7 +38,9 @@ export const AddTaskElement = () => {
                 title: taskTitle,
                 description: taskDescription,
                 date: date,
-                urgency: importance
+                urgency: importance,
+                showBacklog: true,
+                column: COLUMN.TODO
                }
 
                backend?.addTask(task);

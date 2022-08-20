@@ -9,6 +9,7 @@ export interface BackendProps{
     tasks: Task[];
     addUser: (user: User) => void;
     addTask: (task: Task) => void;
+    updateTask: (task: Task) => any;
 }
 
 
@@ -28,10 +29,6 @@ export const BackendContextProvider = (props: React.PropsWithChildren)=>{
         }
     }
 
-    useEffect(()=>{
-   
-    }
-    ,[users]);
 
     const addUser = (user: User)=>{
         setUsers([...users, user]);
@@ -50,9 +47,20 @@ export const BackendContextProvider = (props: React.PropsWithChildren)=>{
 
     useEffect(()=>{
         localStorage.setItem("tasks", JSON.stringify(tasks));
-        console.log("daten wurden gesendet")
+        console.log("useEffect tasks wurde ausgeführt");
     },[tasks])
 
+
+    const updateTask = (task: Task) =>{
+        
+        let taskscopy: Task[] = tasks;
+        taskscopy.forEach((element : Task, index)=>{
+            if(element.id === task.id){
+                taskscopy[index] = task;
+                setTasks([...taskscopy]);
+            }
+        })
+    }
 
     const setToLocalStorage = (key: string, array: any[] )=>{
 
@@ -74,6 +82,7 @@ export const BackendContextProvider = (props: React.PropsWithChildren)=>{
             setToLocalStorage: setToLocalStorage,
             addUser: addUser,
             addTask: addTask,
+            updateTask: updateTask,
             users: users,
             tasks: tasks
         }}>
