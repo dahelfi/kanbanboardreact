@@ -10,6 +10,7 @@ export interface BackendProps{
     addUser: (user: User) => void;
     addTask: (task: Task) => void;
     updateTask: (task: Task) => any;
+    deleteTask: (task :Task) => any;
 }
 
 
@@ -62,6 +63,19 @@ export const BackendContextProvider = (props: React.PropsWithChildren)=>{
         })
     }
 
+    const deleteTask = (task: Task)=>{
+        let taskscopy: Task[] = tasks;
+        taskscopy.forEach((element : Task, index)=>{
+            if(element.id === task.id){
+                console.log("tasks copy vorher: ", taskscopy);
+                
+                taskscopy.splice(index, 1);
+                console.log("tasks copy nachher: ", taskscopy);
+                setTasks([...taskscopy]);
+            }
+        })
+    }
+
     const setToLocalStorage = (key: string, array: any[] )=>{
 
         localStorage.setItem(key, JSON.stringify(array))
@@ -83,6 +97,7 @@ export const BackendContextProvider = (props: React.PropsWithChildren)=>{
             addUser: addUser,
             addTask: addTask,
             updateTask: updateTask,
+            deleteTask: deleteTask,
             users: users,
             tasks: tasks
         }}>

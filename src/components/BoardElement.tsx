@@ -11,6 +11,7 @@ export const BoardElement = () => {
     const [inProgressTasks, setInProgressTasks] = useState<Task[]>([]);
     const [testingTasks, setTestingTasks] = useState<Task[]>([]);
     const [doneTasks, setDoneTasks] = useState<Task[]>([]);
+    const [currentTask, setCurrentTask] = useState<Task>();
 
     useEffect(()=>{
 
@@ -34,15 +35,37 @@ export const BoardElement = () => {
        
     }
 
+    const allowDrop = (event: any)=>{
+        event.preventDefault();
+    }
+
+    const moveTo = (column : COLUMN) =>{
+
+        if(currentTask !== undefined){
+            let updateTask :Task = {
+                id: currentTask?.id,
+                title: currentTask?.title,
+                description: currentTask?.description,
+                date: currentTask?.date,
+                urgency: currentTask?.urgency,
+                showBacklog: currentTask?.showBacklog,
+                column: column
+            }
+            backend?.updateTask(updateTask);
+        }
+        
+    }
+
+
   return (
     <main id="board">
 
     <div className="column-container">
         <h3>TO DO</h3>
-        <div className="card" id="todo" >
+        <div className="card" id="todo" onDrop={()=>moveTo(COLUMN.TODO)} onDragOver={(event:any)=>allowDrop(event)}>
            {todoTasks.map((task: Task)=>{
             return(
-                <BoardListElement task={task}/>
+                <BoardListElement dragElement={()=>setCurrentTask(task)}  task={task}/>
             )
            })
            } 
@@ -51,17 +74,41 @@ export const BoardElement = () => {
     
     <div className="column-container">
         <h3>IN PROGRESS</h3>
-        <div className="card" id="inProgress" ></div>
+        <div className="card" onDrop={()=>moveTo(COLUMN.PROGRESS)} onDragOver={(event:any)=>allowDrop(event)} id="inProgress" >
+           {inProgressTasks.map((task: Task)=>{
+            return(
+                <BoardListElement dragElement={()=>setCurrentTask(task)}  task={task}/>
+            )
+           })
+           } 
+
+        </div>
     </div>
     
     <div className="column-container">
         <h3>TESTING</h3>
-        <div className="card" id="testing" ></div>
+        <div className="card" onDrop={()=>moveTo(COLUMN.TESTING)} onDragOver={(event:any)=>allowDrop(event)} id="inProgress" >
+           {testingTasks.map((task: Task)=>{
+            return(
+                <BoardListElement dragElement={()=>setCurrentTask(task)}  task={task}/>
+            )
+           })
+           } 
+
+        </div>
     </div>
     
     <div className="column-container">
         <h3>DONE</h3>
-        <div className="card" id="done" ></div>
+        <div className="card" onDrop={()=>moveTo(COLUMN.DONE)} onDragOver={(event:any)=>allowDrop(event)} id="inProgress" >
+           {doneTasks.map((task: Task)=>{
+            return(
+                <BoardListElement dragElement={()=>setCurrentTask(task)}  task={task}/>
+            )
+           })
+           } 
+
+        </div>
     </div>
 
 </main> 

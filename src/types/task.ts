@@ -11,8 +11,8 @@ export interface Task{
  }
 
  export enum COLUMN {
-    TODO,
-    PROGRESS,
-    TESTING,
-    DONE
+    TODO = "TODO",
+    PROGRESS = "PROGRESS",
+    TESTING = "TESTING",
+    DONE = "DONE"
  }

@@ -1,9 +1,9 @@
 @import "./constants.scss";
-.button-icon-edit{
+.button-icon-edit.p-button{
     background-color: $PRIMARY;
 }
 
-.button-icon-delete{
+.button-icon-delete.p-button{
     background-color: $SECONDARY;
     border: 1px solid $SECONDARY;
 
