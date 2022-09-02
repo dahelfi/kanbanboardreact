@@ -11,17 +11,17 @@ import { generateHash } from '../services/hash'
 import { todoContext } from '../context/BackendContext'
 
 export enum IMPORTANCE {
-    "SEHR WICHTIG",
-    "WICHTIG",
-    "NEUTRAL",
-    "UNWICHTIG"
+    SEHR_WICHTIG = "SEHR WICHTIG",
+    WICHTIG = "WICHTIG",
+    NEUTRAL = "NEUTRAL",
+    UNWICHTIG = "UNWICHTIG"
 }
 
 export const AddTaskElement = () => {
     const backend = useContext(todoContext);
     const [importance, setImportance] = useState<IMPORTANCE>(IMPORTANCE.NEUTRAL);
     const [importanceArray, setImportanceArray] = useState<any[]>(
-        [{label: "SEHR WICHTIG", value: IMPORTANCE['SEHR WICHTIG']},
+        [{label: "SEHR WICHTIG", value: IMPORTANCE.SEHR_WICHTIG},
         {label: "WICHTIG", value: IMPORTANCE.WICHTIG},
         {label: "NEUTRAL", value: IMPORTANCE.NEUTRAL},
         {label: "UNWICHTIG", value: IMPORTANCE.UNWICHTIG},
