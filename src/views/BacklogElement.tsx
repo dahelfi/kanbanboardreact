@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Card } from 'primereact/card'
 import "../styles/backlog.scss"
 import { todoContext } from '../context/BackendContext'
-import { BacklogListElement } from './BacklogListElement'
+import { BacklogListElement } from '../components/BacklogListElement'
 
 export const BacklogElement = () => {
   const backend = useContext(todoContext);

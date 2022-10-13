@@ -7,10 +7,11 @@ import { todoContext } from '../context/BackendContext'
 import {generateHash} from '../services/hash';
 import {User} from "../types/user"
 import {useNavigate} from "react-router-dom"
+import { PRIMARY_BLACK } from '../constants'
 
 interface Props{
-    isSignedUp: () => void;
-    logIn: () => any;
+    isSignedUp?: () => void;
+    logIn?: () => any;
 }
 
 export const SignUpElement = (props: Props) => {
@@ -31,7 +32,7 @@ export const SignUpElement = (props: Props) => {
       password: password
     }
     backend?.addUser(user);
-    props.logIn();
+    //props.logIn();
     navigate("/board")
 
     backend?.addUser(user);
@@ -41,18 +42,35 @@ export const SignUpElement = (props: Props) => {
  
 
   return (
-    <Card id="card" style={{display: "flex", flexDirection: "column"}}>
-    <h1>Sign up</h1>
-    <label  >Username</label>
-    <InputText onChange={(e:any)=>{setUserName(e.target.value); e.stopPropagation()}} className='input-field' type="text"  />
-    <label  >Email</label>
-    <InputText onChange={(e:any)=>{setUserEmail(e.target.value); e.stopPropagation()}} className='input-field' type="text" />
-    <label  >Password</label>
-    <InputText onChange={(e:any)=>{setPassword(e.target.value); e.stopPropagation()}} className='input-field' type="password" />
-    <Button onClick={()=>createUser()} label="Sign up" icon="pi pi-user"  />
-    <div onClick={props.isSignedUp} style={{display: "flex", justifyContent: "center", width: "100%"}}>
-    <div className="add-account-button">Already signed Up</div>
-    </div>
+    <Card id="card" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+  
+        
+
+        <div style={{display: "flex", justifyContent: "center"}}>
+
+        <div style={{borderBottom: "2px solid #29ABE2", width: "150px", marginBottom: "32px", display: "flex", justifyContent: "center"}}>
+        <h1>Sign Up</h1>
+        </div>
+        </div>
+     
+     
+   
+    <span className="p-input-icon-right">
+                    <i className="pi pi-user" />
+                    <InputText style={{width: "100%"}} placeholder='username' value={userName} onChange={(e:any)=>setUserName(e.target.value)} />
+    </span>
+    <span className="p-input-icon-right">
+                    <i className="pi pi-user" />
+                    <InputText style={{width: "100%"}} placeholder='email' value={userEmail} onChange={(e:any)=>setUserEmail(e.target.value)} />
+    </span>
+    
+    <span className="p-input-icon-right">
+                    <i className="pi pi-lock" />
+                    <InputText type={"password"} style={{width: "100%"}} placeholder='password' value={password} onChange={(e:any)=>setPassword(e.target.value)} />
+    </span>
+    <Button  label="Sign In"  style={{backgroundColor: PRIMARY_BLACK, width: "70%"}} />
+
+   
     </Card>
   )
 }

@@ -1,12 +1,12 @@
 import { useState}from 'react'
-import { Header } from './Header'
+import { Header } from '../components/Header'
 import { generateHash } from '../services/hash'
 import { TabelementType } from '../types/tabelement'
 import { BoardElement } from './BoardElement'
 import { BacklogElement } from './BacklogElement'
 import { AddTaskElement } from './AddTaskElement'
-import { HelpElement } from './HelpElement'
-import { OverviewContainer } from './OverviewContainer'
+import { HelpElement } from '../components/HelpElement'
+import { OverviewContainer } from '../components/OverviewContainer'
 
 const tabElementsArray = [{
   id: generateHash(4),

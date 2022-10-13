@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { PRIMARY } from '../constants';
+import { PRIMARY_BLACK } from '../constants';
 import "../styles/tabelements.scss";
 
 interface Props{
@@ -17,7 +17,7 @@ export const Tabelement = (props: Props) => {
     }
     
     const styles ={
-        backgroundColor: props.selected||hover ? "rgba(175, 175, 175, 0.4)": PRIMARY,
+        backgroundColor: props.selected||hover ? "rgba(175, 175, 175, 0.4)": PRIMARY_BLACK,
         borderLeft: props.selected ? "2px solid white": ""
     }
 

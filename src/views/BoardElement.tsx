@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { COLUMN, Task } from '../types/task'
 import "../styles/mainPage.scss"
 import { todoContext } from '../context/BackendContext'
-import { BoardListElement } from './BoardListElement'
+import { BoardListElement } from '../components/BoardListElement'
 
 
 export const BoardElement = () => {

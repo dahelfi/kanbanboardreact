@@ -5,10 +5,11 @@ import {InputText} from "primereact/inputtext"
 import "../styles/login.scss"
 import {useNavigate} from "react-router-dom"
 import { todoContext } from '../context/BackendContext'
+import { PRIMARY_BLACK } from '../constants'
 
 interface Props{
-    isNotSignedUp: () => void;
-    logIn: () => any;
+    isNotSignedUp?: () => void;
+    logIn?: () => any;
 }
 
 export const SignInElement = (props: Props) => {
@@ -21,7 +22,7 @@ export const SignInElement = (props: Props) => {
 
     if(checkAllInputFields() && backend){ 
         if(checkCredentials(backend?.users)){
-          props.logIn();
+          //props.logIn();
           navigate("/board")
         }else{
           alert('Password or Username are incorrect try again');
@@ -55,16 +56,33 @@ export const SignInElement = (props: Props) => {
   
 
   return (
-    <Card id="card" style={{display: "flex", flexDirection: "column"}}>
-    <h1>Sign In</h1>
-    <label htmlFor="email" >Username</label>
-    <InputText onChange={(e:any)=>setUserName(e.target.value)} className='input-field' type="text"  />
-    <label htmlFor="password" >Password</label>
-    <InputText onChange={(e:any)=>setPassword(e.target.value)} className='input-field' type="password" />
-    <Button onClick={logIn} label="Sign In" icon="pi pi-user"  />
+    <Card id="card" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+  
+        
+
+        <div style={{display: "flex", justifyContent: "center"}}>
+
+        <div style={{borderBottom: "2px solid #29ABE2", width: "150px", marginBottom: "32px", display: "flex", justifyContent: "center"}}>
+        <h1>Login</h1>
+        </div>
+        </div>
+     
+     
+   
+    <span className="p-input-icon-right">
+                    <i className="pi pi-user" />
+                    <InputText style={{width: "100%"}} placeholder='username' value={userName} onChange={(e:any)=>setUserName(e.target.value)} />
+    </span>
+    
+    <span className="p-input-icon-right">
+                    <i className="pi pi-lock" />
+                    <InputText type={"password"} style={{width: "100%"}} placeholder='password' value={password} onChange={(e:any)=>setPassword(e.target.value)} />
+    </span>
+    <Button onClick={logIn} label="Sign In"  style={{backgroundColor: PRIMARY_BLACK, width: "70%"}} />
     <div style={{display: "flex", justifyContent: "center", width: "100%"}}>
-    <div onClick={props.isNotSignedUp} className="add-account-button">Create new account</div>
+    <div  className="add-account-button">Forgot my password</div>
     </div>
+   
     </Card>
   )
 }

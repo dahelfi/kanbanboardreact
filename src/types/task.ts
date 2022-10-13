@@ -1,4 +1,4 @@
-import { IMPORTANCE } from "../components/AddTaskElement";
+import { IMPORTANCE } from "../views/AddTaskElement";
 
 export interface Task{
     id: string;

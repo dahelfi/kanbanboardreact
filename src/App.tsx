@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Login } from './components/Login';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import { MainPage } from './components/MainPage';
+import { MainPage } from './views/MainPage';
 import './styles/App.scss';
 import "primereact/resources/themes/lara-light-indigo/theme.css";  //theme
 import "primereact/resources/primereact.min.css";                  //core css
@@ -18,14 +18,14 @@ function App() {
     
     
         <Routes>
-    {
-      !hasAuthenticated ? 
+    {/* {
+      !hasAuthenticated ?  */}
       <Route path="/" element={<Login logInOrLogOut={()=>setHasAuthenticated(!hasAuthenticated)}/>}/>
        
-      :
+      {/* : */}
       <Route path="/board" element={<MainPage/>}/>
   
-    }
+    {/* } */}
     </Routes> 
     </div>
     </BackendContextProvider>
